@@ -34,7 +34,7 @@ def build_part1_RNN(window_size):
 
 ### TODO: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
-    punctuation = '!,.:;?\'"'
+    punctuation = '!,.:;?'
     lowercase = 'abcdefghijklmnopqrstuvwxyz'
     def replace(c):
         if c in punctuation or c in lowercase:
@@ -55,6 +55,6 @@ def window_transform_text(text, window_size, step_size):
 def build_part2_RNN(window_size, num_chars):
     model = Sequential()
     model.add(LSTM(200, input_shape=(window_size, num_chars)))
-    model.add(Dense(num_chars, activation="softmax"))
-    #model.add(keras.layers.Activation('softmax'))
+    model.add(Dense(num_chars))#, activation="softmax"))
+    model.add(keras.layers.Activation('softmax'))
     return model
